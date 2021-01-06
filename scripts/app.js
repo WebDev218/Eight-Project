@@ -2,8 +2,8 @@ let results = 12;
 const userSource = `https://randomuser.me/api/?results=${results}`;
 const employeeDirectory = [];
 const employeeGrid = document.querySelector('.employee-grid');
-const employeeModal = document.querySelector('.employee-modal');
-const modalContent = document.querySelector('.modal-content');
+
+const heading = document.querySelector('h1');
 
 
 async function getEmployees(url) {
@@ -17,17 +17,23 @@ async function getEmployees(url) {
 
 function createEmployees(employees) {
 	employees.results.map(emp => {
+		let dob = new Date(emp.dob.date);
 		employeeDirectory.push({
 			name:`${emp.name.first} ${emp.name.last}`,
 			email: `${emp.email}`,
 			city: `${emp.location.city}`,
-			address: `${emp.location.street.number} ${emp.location.street.name} ${this.city}, ${emp.location.postcode}`,
+			address: {
+				street: `${emp.location.street.number} ${emp.location.street.name}`, 
+				city: `${emp.location.city}`,
+				postcode: `${emp.location.postcode}`
+				},
 			phone: `${emp.phone}`,
 			pics: [`${emp.picture.large}`, `${emp.picture.medium}`,`${emp.picture.thumbnail}`],
-			dob: `${new Date(emp.dob)}`
+			dob: `${dob.getDate()}/${dob.getMonth()}/${dob.getYear()}`
 		});
 	});
 	employeeDirectory.forEach(employeeCard);
+	populateSearch();
 };
 
 function employeeCard(employee, index) {
@@ -36,29 +42,10 @@ function employeeCard(employee, index) {
 			<img src="${employee.pics[1]}" class="emp-profile">
 			<h2 class="emp-name">${employee.name}</h2>
 			<a href="mailto:${employee.email}">${employee.email}</a>
-			<p class="emp-city">${employee.city}</p>
+			<p class="emp-city">${employee.address.city}</p>
 		</div>
 	`;
 }
-
-function openModal(employeeId) {
-	const employee = employeeDirectory[employeeId];
-	modalContent.innerHTML = `
-		<img src="${employee.pics[0]}" class="emp-profile">
-		<h2 class="emp-name">${employee.name}</h2>
-		<a href="mailto:${employee.email}">${employee.email}</a>
-		<p class="emp-city">${employee.city}</p>
-		<p>${employee.phone}</p>
-		<p>${employee.address}</p>
-		<p>${employee.dob}</p>
-	`;
-	// employeeModal.style.display = 'block';
-}
-
-
-getEmployees(userSource)
-	.then(createEmployees)
-	.catch(e => console.log(e));
 
 employeeGrid.addEventListener('click', (e) =>{
 	let targetID = e.target.id.slice(0, -4);
@@ -69,3 +56,19 @@ employeeGrid.addEventListener('click', (e) =>{
 		openModal(targetID);
 	};
 });
+
+async function loadData(url) {
+	heading.textContent = 'Fetching data, please wait...'
+	getEmployees(url)
+		.then(createEmployees)
+		.catch(e => {
+			console.log(e, url);
+			heading.textContent = 'Something went wrong, please refresh.';
+		})
+		.finally(() =>{
+			heading.textContent = 'Awesome Startup Employee Grid';
+			employeeSearch.parentElement.style.visibility = 'visible';
+		});
+}
+
+loadData(userSource);

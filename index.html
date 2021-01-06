@@ -9,19 +9,28 @@
 </head>
 <body>
 
-	<div class="employee-grid">
+	<div class="wrapper">
+		<header >
+			<h1></h1>
+			<form class="employee-search">
+				<input  type="text" name="search" placeholder="Search employee name...">
+				<span class="close">x</span>
+			</form>		
+		</header>
+		<main>
+
+			<div class="employee-grid">
+			</div>
+		</main>
 
 		<div class="employee-modal">	
-			<span class="close">X</span>				
-			<div class="modal-content">
-				test
+			<div class="modal-content">			
 			</div>
 		</div>
-
-
-
 	</div>
 
+	<script src="scripts/search.js"></script>
+	<script src="scripts/modal.js"></script>
 	<script src="scripts/app.js"></script>
 </body>
 </html>

@@ -1,15 +1,301 @@
 * {
 	box-sizing: border-box;
+	font-size: 17px;
+	font-family: helvetica, sans-serif;
+	color: grey;
 }
 
+main {
+	margin: auto 0;	
+}
 
+.wrapper {
+	max-width: 1168px;
+	margin: 0 auto;	
+}
+body{
+	background: rgba(150, 150, 150, .1)
+}
+
+img {
+	border-radius: 50%;
+}
+
+h1 {
+	font-size: 20px;
+}
+
+h2 {
+	color: black;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.employee-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 1em;
+}
 
 .emp-card {
 	border: 1px solid black;
+	background: white;
+	min-width: 370px;
+	max-height: 150px;
+	margin: 0 auto;
+	padding: 1.5em;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
 
+.emp-card > h2,
+.emp-card > a,
+.emp-card > p 
+{
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	padding: .2em 0;
+	font-size: .9em;
+}
+
+.emp-card > h2 {
+	margin: 0;
+	margin-top: auto;
+	font-size: 1em;
 }
 
 
+
+.emp-card > p {
+	margin-bottom: auto;
+}
+ img {
+	height: 100%;
+	border-radius: 50%;
+	margin-right: 1em;
+}
+
 .employee-modal {
-	/*display: none;*/
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: auto;
+	background-color: black;
+	background-color: rgba(0,0,0,0.6);
+
+}
+
+.modal-content {
+	background: white;
+	border: 1px solid #888888;
+	margin: 10% auto;
+	padding: 1em 2em;
+	max-width: 90vw;
+	max-height: 90vh;
+	overflow: auto;
+	position: relative;
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.modal-content > a,
+.modal-content > p {
+	font-size: .8em;
+}
+
+.emp-city {
+	margin-bottom: 4em;
+}
+
+.close {
+	color: black;
+	position: absolute;	
+	font-weight: bold;	
+	margin: 0;
+	transform-origin: center;
+}
+
+.modal-content .close {
+	font-size: .7em;
+	top: 0;
+	right: 0;
+	padding: 1em;
+}
+
+.close:hover {
+	cursor: pointer;
+}
+
+.modal-content .close:hover, .modal-content .close:focus {
+	transform: scale(1.2);
+
+}
+
+header {
+	padding: 1em 0;	
+}
+
+
+h1 {
+	display: block;
+	width: 320px;
+	margin: 0 auto
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.employee-search {
+	visibility: hidden;
+	position: relative;
+	display: block;
+	margin: .5em auto;
+	width: 320px;
+/*	clear: both;*/
+}
+.employee-search > input {
+	width: 100%;
+	padding-right: 1.1em;
+}
+
+.employee-search > .close {
+	top: 0em;
+	right: .1em;
+	font-size: .9em;
+	padding: .25em .3em;
+}
+
+.employee-search > .close:hover {
+	background: rgba(150, 150, 150, .5);;
+}
+
+button {
+	width: 50%;
+	border: 1px solid black;
+	background: rgba(150, 150, 150, .1);
+	color: black;
+	font-size: .7em;
+}
+
+button[disabled] {
+	opacity: .3;
+}
+
+
+@media (max-width: 320px) {
+	.emp-card {
+		width: 100%;
+	}
+
+	.employee-grid {
+		grid-gap: 3em; /*Made larget to allow for finger scrolling*/
+	}
+
+	.modal-content {
+		margin: 10vh auto;
+		padding: 1em 1.5em;
+		min-width: 320px;
+		max-height: 80vh;
+		overflow: none;
+	}
+
+	.modal-content > .close {
+		font-size: 3em;
+		padding: .5em;
+		
+	}
+
+	.modal-content > button {
+		height: 2em;
+		font-weight: bolder;
+
+	}
+
+
+}
+
+@media (min-width: 768px) {
+	.modal-content {
+		margin: 10% auto;
+		padding: 2em 4em;
+		width: 40vw;
+		max-height: 550px;
+		overflow: none;
+	}
+
+	.employee-grid {		
+		grid-template-columns: repeat(2, 1fr);
+		grid-gap: 1.5em;
+	}
+
+	.emp-card {
+		margin: 0 auto;
+		width: 100%;
+		max-height: 150px;
+		padding: 1.5em;
+	}
+
+	
+}
+
+@media (min-width: 1024px) {
+	.modal-content {
+		margin: 10% auto;
+		padding: 2em 4em;
+		max-width: 300px;
+		max-height: 500px;
+		overflow: none;
+	}
+
+	.employee-grid {
+		grid-template-columns: repeat(3, 1fr);
+		grid-gap: 2em;
+	}
+
+	.emp-card {
+		max-width: 380px;
+		max-height: 150px;
+		padding: 1.5em;
+	}
+
+
+	h1 {
+		display: inline-block;
+		width: 50%;
+		margin: 0;
+		margin-right: auto;
+	}
+	header {
+		padding: 1em 0;
+	}
+
+
+	.employee-search {
+		float: right;	
+		display: inline-block;
+	}
+
+
+	.employee-search {
+		display: inline-block;
+		margin: auto 0;
+		width: 40%;
+
+	}
+
 }
