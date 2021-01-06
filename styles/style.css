@@ -1,0 +1,15 @@
+* {
+	box-sizing: border-box;
+}
+
+
+
+.emp-card {
+	border: 1px solid black;
+
+}
+
+
+.employee-modal {
+	/*display: none;*/
+}
