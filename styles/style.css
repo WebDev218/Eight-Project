@@ -1,3 +1,6 @@
+/* ========== 
+		Base Styles 
+				========== */
 * {
 	box-sizing: border-box;
 	font-size: 17px;
@@ -9,20 +12,22 @@ main {
 	margin: auto 0;	
 }
 
-.wrapper {
-	max-width: 1168px;
-	margin: 0 auto;	
-}
 body{
 	background: rgba(150, 150, 150, .1)
 }
-
-img {
-	border-radius: 50%;
+header {
+	padding: 1em 0;	
 }
 
 h1 {
 	font-size: 20px;
+	display: block;
+	width: 320px;
+	margin: 0 auto
+}
+
+img {
+	border-radius: 50%;
 }
 
 h2 {
@@ -37,12 +42,23 @@ a:hover {
 	text-decoration: underline;
 }
 
+/* ========== 
+		Grid layout 
+				========== */
+.wrapper {
+	max-width: 1168px;
+	margin: 0 auto;	
+}
+
 .employee-grid {
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-gap: 1em;
 }
 
+/* ========== 
+		Employee Cards 
+				========== */
 .emp-card {
 	border: 1px solid black;
 	background: white;
@@ -72,8 +88,6 @@ a:hover {
 	font-size: 1em;
 }
 
-
-
 .emp-card > p {
 	margin-bottom: auto;
 }
@@ -82,6 +96,11 @@ a:hover {
 	border-radius: 50%;
 	margin-right: 1em;
 }
+
+
+/* ========== 
+		Modal 
+				========== */
 
 .employee-modal {
 	display: none;
@@ -104,7 +123,7 @@ a:hover {
 	padding: 1em 2em;
 	max-width: 90vw;
 	max-height: 90vh;
-	overflow: auto;
+	overflow: none;
 	position: relative;
 	text-align: center;
 	font-size: 1.1em;
@@ -143,30 +162,27 @@ a:hover {
 
 }
 
-header {
-	padding: 1em 0;	
+button {
+	width: 50%;
+	border: 1px solid black;
+	background: rgba(150, 150, 150, .1);
+	color: black;
+	font-size: .7em;
 }
 
-
-h1 {
-	display: block;
-	width: 320px;
-	margin: 0 auto
+button[disabled] {
+	opacity: .3;
 }
 
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
+/* ========== 
+		Search 
+				========== */
 .employee-search {
 	visibility: hidden;
 	position: relative;
 	display: block;
 	margin: .5em auto;
 	width: 320px;
-/*	clear: both;*/
 }
 .employee-search > input {
 	width: 100%;
@@ -184,26 +200,30 @@ h1 {
 	background: rgba(150, 150, 150, .5);;
 }
 
-button {
-	width: 50%;
-	border: 1px solid black;
-	background: rgba(150, 150, 150, .1);
-	color: black;
-	font-size: .7em;
+/* ========== 
+		Select results
+				========== */
+
+.select-form {
+	display: block;
+	width: 200px;
+	margin: 1em auto;
 }
 
-button[disabled] {
-	opacity: .3;
+.select-form > select {
+	width: 4em;
 }
 
-
+/* ========== 
+		Media Queries
+				========== */
 @media (max-width: 320px) {
 	.emp-card {
 		width: 100%;
 	}
 
 	.employee-grid {
-		grid-gap: 3em; /*Made larget to allow for finger scrolling*/
+		grid-gap: 3em; /*Made larger to allow for finger scrolling*/
 	}
 
 	.modal-content {
@@ -255,11 +275,7 @@ button[disabled] {
 
 @media (min-width: 1024px) {
 	.modal-content {
-		margin: 10% auto;
-		padding: 2em 4em;
-		max-width: 300px;
-		max-height: 500px;
-		overflow: none;
+		/*width: 400px;*/
 	}
 
 	.employee-grid {

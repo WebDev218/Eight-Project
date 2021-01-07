@@ -1,22 +1,23 @@
-const employeeSearch = document.querySelector('.employee-search').children[0];
-let employeeCardList; //Users later for search
 const clearSearch = document.querySelector('.employee-search > .close'); 
-
+let employeeCardList; //Used later for search
 /**
-* The search function has to be populated with the names of all active users fro the allUsers object .name property
-* no params are required as long as this script is loaded after the allUser object is declared
+* The search function has to be populated with the names of all employees from the employeeCardList object .name property
+* no params are required as long as this script is loaded after the allUser object is employeeCardList
 */
 function populateSearch() {
 	employeeCardList = document.querySelectorAll('.emp-card');
+
+	employeeSearch.addEventListener('keyup', function(e) {
+		searchEmployees()
+	});
 }
 
 /**
-* Identify text entered by the user in the Message User section, seach for matching user names and generate an 
-* HTML drop down list to be appended to the search box. Styling to be kept consistent with the page.
+* Identify text entered by the user in the employeeSearch, seach for matching employee names and 
+* set cards not matching display value to none. Matching cards to be ''. 
 * The search results need to be cleared every time the function is called to prevent duplication.
-* The element appended to the seach results should be a P tag with teh class .result
 */
-function searchUsers() {
+function searchEmployees() {
 	let userInput = employeeSearch.value.toLowerCase();
 	employeeCardList.forEach(card => {
 		if (card.children[1].textContent.toLowerCase().includes(userInput)) {
@@ -28,8 +29,7 @@ function searchUsers() {
 }
 
 /**
-* Make closing the seach pop up accessible anywhere. Currently this only has one line of code, but had more
-* during development, and I kept it in as it may require more code later
+* Reset the serach box and make all cards visible once the search is cleared
 */
 function closeSearch() {	
 	employeeSearch.value = '';
@@ -37,10 +37,6 @@ function closeSearch() {
 			card.style.display = '';
 	});
 }
-
-employeeSearch.addEventListener('keyup', function(e) {
-	searchUsers()
-});
 
 clearSearch.addEventListener('click', () => {
 	closeSearch();	
