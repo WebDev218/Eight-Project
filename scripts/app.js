@@ -1,5 +1,5 @@
 /* ========== Global variables ========== */
-const userSource = `https://randomuser.me/api/?results=`;
+const userSource = `https://cors-anywhere.herokuapp.com/https://randomuser.me/api/?results=`; /*Cors anywhere Credited to: https://github.com/Rob--W/cors-anywhere*/
 const employeeGrid = document.querySelector('.employee-grid');
 const heading = document.querySelector('h1');
 const employeeSearch = document.querySelector('.employee-search').children[0];
